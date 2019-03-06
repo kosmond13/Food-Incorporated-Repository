@@ -7,6 +7,5 @@ import java.util.List;
 
 public interface FoodWriteController {
 
-    Mono<FoodDto>getNutritionData(String recipe);
     List<FoodNutritionalInformation> getFoodByName(String food);
 }

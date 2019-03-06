@@ -24,8 +24,9 @@ public class FoodWriteControllerImpl implements FoodWriteController {
     @Autowired
     FoodWriteService foodService;
     @GetMapping("/nutrition")
-    public Mono<FoodDto> getNutritionData(@RequestParam(value="food", required = false) String food){
-        return foodService.getNutrition(food);
+    public String testValue(){
+        String returnValue = "this is a test";
+        return returnValue;
     }
     @GetMapping("/nutrition/test")
     public List<FoodNutritionalInformation> getFoodByName(@RequestParam(value="food", required = false)String food){

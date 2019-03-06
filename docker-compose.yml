@@ -1,4 +1,4 @@
-version: '2'
+version: '3.5'
 services:
   local:
     container_name: local
@@ -16,22 +16,14 @@ services:
       DB_PORT: 5432
       DB_USER: developer
       DB_PASSWORD: mysecretpassword
-    depends_on:
-      - db
     working_dir: /app
     command: bash -c 'bash'
-  db:
-    image: postgres:9.4
-    container_name: postgres
-    environment:
-      PGDATA: /var/lib/postgresql/data/case_data
-      POSTGRES_USER: developer
-      POSTGRES_PASSWORD: mysecretpassword
-      POSTGRES_DB: foodinc
-    volumes:
-      - postgres_db:/var/lib/postgresql/data/case_data
-    ports:
-      - "5440:5432"
+    networks:
+      - foodnetwork
+networks:
+  foodnetwork:
+      external: true
+      name: food_inc_network
+
 volumes:
-  postgres_db:
   gradle_cache:
