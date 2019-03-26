@@ -1,0 +1,25 @@
+version: '2'
+services:
+  local:
+    container_name: local_write
+    build: .
+    stdin_open: true
+    volumes:
+      - .:/app
+      - gradle_cache:/root/.gradle
+    ports:
+      - "8082:8082"
+    environment:
+      cluster_env: 'LOCAL_WRITE'
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: developer
+      DB_PASSWORD: mysecretpassword
+    working_dir: /app
+    command: bash -c 'bash'
+volumes:
+  gradle_cache:
+networks:
+  default:
+    external:
+      name: food_inc_network
